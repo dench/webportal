@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\codeception\_pages;
+namespace tests\codeception\_pages\main;
 
 use yii\codeception\BasePage;
 
@@ -10,7 +10,7 @@ use yii\codeception\BasePage;
  */
 class ContactPage extends BasePage
 {
-    public $route = 'site/contact';
+    public $route = 'main/contact/index';
 
     /**
      * @param array $contactData

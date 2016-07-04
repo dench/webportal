@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\codeception\_pages;
+namespace tests\codeception\_pages\user;
 
 use yii\codeception\BasePage;
 
@@ -10,7 +10,7 @@ use yii\codeception\BasePage;
  */
 class LoginPage extends BasePage
 {
-    public $route = 'site/login';
+    public $route = 'user/default/login';
 
     /**
      * @param string $username

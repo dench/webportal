@@ -1,6 +1,6 @@
 <?php
 
-use tests\codeception\_pages\ContactPage;
+use tests\codeception\_pages\main\ContactPage;
 
 /* @var $scenario Codeception\Scenario */
 
