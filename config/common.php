@@ -6,7 +6,10 @@ $params = yii\helpers\ArrayHelper::merge(
 );
 
 return [
+    'version' => '0.1',
     'basePath' => dirname(__DIR__),
+    'language' => 'ru_RU',
+    'sourceLanguage' => 'ru_RU',
     'bootstrap' => ['log'],
     'modules' => [
         'main' => [
@@ -14,6 +17,9 @@ return [
         ],
         'user' => [
             'class' => 'app\modules\user\Module',
+        ],
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
         ],
     ],
     'components' => [
