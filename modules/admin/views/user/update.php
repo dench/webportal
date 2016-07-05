@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\admin\widgets\Box;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -12,12 +13,11 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="user-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<?php Box::begin(); ?>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
-</div>
+<?php Box::end(); ?>

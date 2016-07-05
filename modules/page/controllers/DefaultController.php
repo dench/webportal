@@ -2,6 +2,7 @@
 
 namespace app\modules\page\controllers;
 
+use app\modules\page\models\Page;
 use yii\web\Controller;
 
 /**
@@ -13,8 +14,12 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($slug)
     {
-        return $this->render('index');
+        $model = Page::findOne(['slug' => $slug]);
+        
+        return $this->render('index', [
+            'model' => $model
+        ]);
     }
 }

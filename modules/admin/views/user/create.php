@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\admin\widgets\Box;
 use yii\helpers\Html;
 
 
@@ -10,12 +11,11 @@ $this->title = Yii::t('app', 'Create User');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<?php Box::begin(); ?>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
-</div>
+<?php Box::end(); ?>

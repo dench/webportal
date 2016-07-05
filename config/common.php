@@ -7,6 +7,7 @@ $params = yii\helpers\ArrayHelper::merge(
 
 return [
     'version' => '0.1',
+    'name' => 'Web Portal',
     'basePath' => dirname(__DIR__),
     'language' => 'ru_RU',
     'sourceLanguage' => 'ru_RU',
@@ -39,14 +40,17 @@ return [
         'log' => [
             'class' => 'yii\log\Dispatcher',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'pattern' => '<slug:\w+>',
+                    'route' => 'page/default/index',
+                    'suffix' => '.html',
+                ],
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
