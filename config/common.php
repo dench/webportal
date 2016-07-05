@@ -21,6 +21,9 @@ return [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
+        'page' => [
+            'class' => 'app\modules\page\Module',
+        ],
     ],
     'components' => [
         'db' => [

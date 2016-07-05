@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\user\models;
 
+use app\modules\page\models\Page;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -20,6 +21,8 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * 
+ * @property Page $pages
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -196,5 +199,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPages()
+    {
+        return $this->hasMany(Page::className(), ['user_id' => 'id']);
     }
 }
