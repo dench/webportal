@@ -1,8 +1,6 @@
 <?php
 
 use app\modules\admin\widgets\Box;
-use yii\helpers\Html;
-
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\user\models\User */

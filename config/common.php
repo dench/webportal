@@ -25,6 +25,9 @@ return [
         'page' => [
             'class' => 'app\modules\page\Module',
         ],
+        'article' => [
+            'class' => 'app\modules\article\Module',
+        ],
     ],
     'components' => [
         'db' => [
@@ -49,6 +52,8 @@ return [
                     'route' => 'page/default/index',
                     'suffix' => '.html',
                 ],
+                '<module:(admin)>' => '<module>/default/index',
+                '<module:(admin)>/<controller>' => '<module>/<controller>/index',
             ],
         ],
     ],
