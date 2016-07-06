@@ -76,17 +76,17 @@ class Page extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'slug' => Yii::t('app', 'Slug'),
-            'name' => Yii::t('app', 'Name'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'keywords' => Yii::t('app', 'Keywords'),
-            'text' => Yii::t('app', 'Text'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'enabled' => Yii::t('app', 'Enabled'),
+            'id' => 'ID',
+            'user_id' => Yii::t('app', 'Автор'),
+            'slug' => Yii::t('app', 'ЧПУ'),
+            'name' => Yii::t('app', 'Название'),
+            'title' => Yii::t('app', 'Заголовок'),
+            'description' => Yii::t('app', 'Описание'),
+            'keywords' => Yii::t('app', 'Ключевые слова'),
+            'text' => Yii::t('app', 'Текст'),
+            'created_at' => Yii::t('app', 'Создано'),
+            'updated_at' => Yii::t('app', 'Изменено'),
+            'enabled' => Yii::t('app', 'Включено'),
         ];
     }
 

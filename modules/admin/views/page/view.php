@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\admin\widgets\Box;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -7,24 +8,22 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\page\models\Page */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Страницы'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="page-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+<?php Box::begin([
+    'footer' => Html::a(Yii::t('app', 'Изменить'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])
+        . ' ' .
+        Html::a(Yii::t('app', 'Удалить'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('app', 'Вы уверены, что хотите удалить?'),
                 'method' => 'post',
             ],
-        ]) ?>
-    </p>
-
+        ])
+]); ?>
+    
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -35,10 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description',
             'keywords',
-            'text:ntext',
             'created_at',
             'updated_at',
+            'enabled',
+            'text:ntext',
         ],
     ]) ?>
-
-</div>
+    
+<?php Box::end(); ?>

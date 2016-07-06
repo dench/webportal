@@ -5,12 +5,10 @@ use app\modules\admin\widgets\Box;
 /* @var $this yii\web\View */
 /* @var $model app\modules\article\models\Article */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Article',
-]) . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Articles'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Редактирование');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Статьи'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Редактирование');
 ?>
 
 <?php Box::begin(); ?>

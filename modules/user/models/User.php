@@ -56,17 +56,33 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['username', 'required'],
             ['username', 'match', 'pattern' => '#^[\w_-]+$#i'],
-            ['username', 'unique', 'targetClass' => self::className(), 'message' =>'ERROR_USERNAME_EXISTS'],
+            ['username', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'Имя пользователя уже существует')],
             ['username', 'string', 'min' => 2, 'max' => 255],
             
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => self::className(), 'message' => 'ERROR_EMAIL_EXISTS'],
+            ['email', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'E-mail уже существует')],
             ['email', 'string', 'max' => 255],
             
             ['status', 'integer'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => Yii::t('app', 'Имя пользователя'),
+            'email' => Yii::t('app', 'E-mail'),
+            'status' => Yii::t('app', 'Статус'),
+            'created_at' => Yii::t('app', 'Зарегистрирован'),
+            'updated_at' => Yii::t('app', 'Изменен'),
+            'password' => Yii::t('app', 'Пароль'),
         ];
     }
 

@@ -8,12 +8,12 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admin\models\PageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pages');
+$this->title = Yii::t('app', 'Страницы');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php Box::begin([
-    'footer' => Html::a(Yii::t('app', 'Create Page'), ['create'], ['class' => 'btn btn-success'])
+    'footer' => Html::a(Yii::t('app', 'Создать страницу'), ['create'], ['class' => 'btn btn-success'])
 ]); ?>
 
     <?= GridView::widget([
@@ -22,16 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
-            'slug',
             'name',
-            'title',
-            // 'description',
-            // 'keywords',
-            // 'text:ntext',
-            // 'created_at',
-            // 'updated_at',
+            'slug',
+            'created_at:date',
+            'updated_at:date',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

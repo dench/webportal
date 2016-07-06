@@ -5,8 +5,8 @@ use app\modules\admin\widgets\Box;
 /* @var $this yii\web\View */
 /* @var $model app\modules\page\models\Page */
 
-$this->title = Yii::t('app', 'Create Page');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pages'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Создание страницы');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Страницы'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

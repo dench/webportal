@@ -74,16 +74,15 @@ class ArticleCategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'parent_id' => Yii::t('app', 'Parent ID'),
-            'slug' => Yii::t('app', 'Slug'),
-            'name' => Yii::t('app', 'Name'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'keywords' => Yii::t('app', 'Keywords'),
-            'text' => Yii::t('app', 'Text'),
-            'position' => Yii::t('app', 'Position'),
-            'enabled' => Yii::t('app', 'Enabled'),
+            'id' => 'ID',
+            'parent_id' => Yii::t('app', 'Родительская категория'),
+            'slug' => Yii::t('app', 'ЧПУ'),
+            'name' => Yii::t('app', 'Название'),
+            'title' => Yii::t('app', 'Заголовок'),
+            'description' => Yii::t('app', 'Описание'),
+            'keywords' => Yii::t('app', 'Ключевые слова'),
+            'text' => Yii::t('app', 'Текст'),
+            'enabled' => Yii::t('app', 'Включено'),
         ];
     }
 
