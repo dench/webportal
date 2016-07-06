@@ -3,6 +3,7 @@
 namespace app\modules\article\models;
 
 use app\behaviors\CreatorBehavior;
+use app\behaviors\PositionBehavior;
 use app\behaviors\TitleBehavior;
 use app\modules\user\models\User;
 use Yii;
@@ -49,6 +50,7 @@ class Article extends \yii\db\ActiveRecord
             TimestampBehavior::className(),
             CreatorBehavior::className(),
             TitleBehavior::className(),
+            PositionBehavior::className(),
             [
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'name',
@@ -63,7 +65,7 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'slug', 'name'], 'required'],
+            [['category_id', 'name'], 'required'],
             [['category_id', 'position', 'view'], 'integer'],
             [['text'], 'string'],
             [['slug'], 'string', 'max' => 100],
