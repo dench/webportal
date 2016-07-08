@@ -5,10 +5,10 @@ namespace app\modules\admin\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\article\models\Article;
+use app\modules\articles\models\Article;
 
 /**
- * ArticleSearch represents the model behind the search form about `app\modules\article\models\Article`.
+ * ArticleSearch represents the model behind the search form about `app\modules\articles\models\Article`.
  */
 class ArticleSearch extends Article
 {
@@ -41,7 +41,7 @@ class ArticleSearch extends Article
      */
     public function search($params)
     {
-        $query = Article::find();
+        $query = \app\modules\articles\models\Article::find();
 
         // add conditions that should always apply here
 

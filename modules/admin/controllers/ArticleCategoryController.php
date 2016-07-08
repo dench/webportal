@@ -3,7 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\modules\article\models\ArticleCategory;
+use app\modules\articles\models\ArticleCategory;
 use app\modules\admin\models\ArticleCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -112,7 +112,7 @@ class ArticleCategoryController extends Controller
      * Finds the ArticleCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ArticleCategory the loaded model
+     * @return \app\modules\articles\models\ArticleCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)

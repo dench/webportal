@@ -25,8 +25,8 @@ return [
         'page' => [
             'class' => 'app\modules\page\Module',
         ],
-        'article' => [
-            'class' => 'app\modules\article\Module',
+        'articles' => [
+            'class' => 'app\modules\articles\Module',
         ],
     ],
     'components' => [
@@ -46,14 +46,21 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix' => '/',
             'rules' => [
                 [
                     'pattern' => '<slug:\w+>',
                     'route' => 'page/default/index',
                     'suffix' => '.html',
                 ],
-                '<module:(admin)>' => '<module>/default/index',
-                '<module:(admin)>/<controller>' => '<module>/<controller>/index',
+                [
+                    'pattern' => 'article/<slug:\w+>',
+                    'route' => 'articles/default/view',
+                    'suffix' => '.html',
+                ],
+                '<module:articles>/<slug:\w+>' => '<module>/default/category',
+                '<module:(admin|articles)>' => '<module>/default/index',
+                '<module:admin>/<controller>' => '<module>/<controller>/index',
             ],
         ],
     ],

@@ -3,7 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\modules\article\models\Article;
+use app\modules\articles\models\Article;
 use app\modules\admin\models\ArticleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

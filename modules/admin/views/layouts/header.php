@@ -20,7 +20,7 @@ use yii\helpers\Html;
 
             <?php
 
-            $menuItems[] = ['label' => '<i class="fa fa-home"></i> ' . Yii::t('app', 'Главная'), 'encode' => false, 'url' => ['/']];
+            $menuItems[] = ['label' => '<i class="fa fa-home"></i> ' . Yii::t('app', 'Главная'), 'encode' => false, 'url' => Yii::$app->homeUrl];
             $menuItems[] = '<li>'
                 . Html::beginForm(['/user/default/logout'], 'post')
                 . Html::submitButton(

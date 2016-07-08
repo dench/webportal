@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\article\models;
+namespace app\modules\articles\models;
 
 use app\behaviors\CreatorBehavior;
 use app\behaviors\PositionBehavior;
