@@ -34,18 +34,18 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/main/default/index']],
-        ['label' => 'Contact', 'url' => ['/main/contact/index']],
+        ['label' => Yii::t('app', 'Статьи'), 'url' => ['/articles/default/index']],
+        ['label' => Yii::t('app', 'Контакты'), 'url' => ['/main/contact/index']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/user/default/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/user/default/login']];
+        $menuItems[] = ['label' => Yii::t('app', 'Регистрация'), 'url' => ['/user/default/signup']];
+        $menuItems[] = ['label' => Yii::t('app', 'Войти'), 'url' => ['/user/default/login']];
     } else {
         $menuItems[] = ['label' => 'Admin', 'url' => ['/admin/default/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/user/default/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                Yii::t('app', 'Выйти'),
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()

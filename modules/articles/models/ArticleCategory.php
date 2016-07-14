@@ -27,6 +27,16 @@ use yii\behaviors\SluggableBehavior;
  */
 class ArticleCategory extends \yii\db\ActiveRecord
 {
+    private static $_all;
+
+    private static $_parent;
+
+    private static $_tree;
+
+    private static $_list;
+
+    private static $_childrenIds;
+
     /**
      * @inheritdoc
      */

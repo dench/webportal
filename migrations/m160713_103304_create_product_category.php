@@ -3,16 +3,16 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation for table `article`.
+ * Handles the creation for table `product_category`.
  */
-class m160706_104621_create_article_category extends Migration
+class m160713_103304_create_product_category extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('article_category', [
+        $this->createTable('product_category', [
             'id' => $this->primaryKey(),
             'parent_id' => $this->integer(),
             'slug' => $this->string(100)->unique(),
@@ -25,7 +25,7 @@ class m160706_104621_create_article_category extends Migration
             'enabled' => $this->boolean()->notNull()->defaultValue(1)
         ]);
 
-        $this->addForeignKey('fk-article_category-pid', 'article_category', 'parent_id', 'article_category', 'id', 'CASCADE');
+        $this->addForeignKey('fk-product_category-pid', 'product_category', 'parent_id', 'product_category', 'id', 'CASCADE');
     }
 
     /**
@@ -33,8 +33,8 @@ class m160706_104621_create_article_category extends Migration
      */
     public function down()
     {
-        $this->dropForeignKey('fk-article_category-pid', 'article_category');
+        $this->dropForeignKey('fk-product_category-pid', 'product_category');
 
-        $this->dropTable('article_category');
+        $this->dropTable('product_category');
     }
 }

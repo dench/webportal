@@ -49,16 +49,16 @@ return [
             'suffix' => '/',
             'rules' => [
                 [
-                    'pattern' => '<slug:\w+>',
+                    'pattern' => '<slug:[\w_-]+>',
                     'route' => 'page/default/index',
                     'suffix' => '.html',
                 ],
                 [
-                    'pattern' => 'article/<slug:\w+>',
+                    'pattern' => 'article/<slug:[\w_-]+>',
                     'route' => 'articles/default/view',
                     'suffix' => '.html',
                 ],
-                '<module:articles>/<slug:\w+>' => '<module>/default/category',
+                '<module:articles>/<slug:[\w_-]+>' => '<module>/default/index',
                 '<module:(admin|articles)>' => '<module>/default/index',
                 '<module:admin>/<controller>' => '<module>/<controller>/index',
             ],
