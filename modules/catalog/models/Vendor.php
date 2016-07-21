@@ -1,0 +1,57 @@
+<?php
+
+namespace app\modules\catalog\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "vendor".
+ *
+ * @property integer $id
+ * @property string $name
+ * @property integer $enabled
+ *
+ * @property Product[] $products
+ */
+class Vendor extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'vendor';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['name'], 'required'],
+            [['enabled'], 'integer'],
+            [['name'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'enabled' => Yii::t('app', 'Enabled'),
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProducts()
+    {
+        return $this->hasMany(Product::className(), ['vendor_id' => 'id']);
+    }
+}

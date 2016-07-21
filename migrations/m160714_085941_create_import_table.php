@@ -3,16 +3,16 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation for table `parse`.
+ * Handles the creation for table `import`.
  */
-class m160714_085941_create_parse_table extends Migration
+class m160714_085941_create_import_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('parse', [
+        $this->createTable('import', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'format_id' => $this->smallInteger()->notNull(),
@@ -22,7 +22,7 @@ class m160714_085941_create_parse_table extends Migration
             'status' => $this->boolean()->notNull()->defaultValue(0)
         ]);
 
-        $this->addForeignKey('fk-parse-user_id', 'parse', 'user_id', 'user', 'id', 'CASCADE');
+        $this->addForeignKey('fk-import-user_id', 'import', 'user_id', 'user', 'id', 'CASCADE');
     }
 
     /**
@@ -30,8 +30,8 @@ class m160714_085941_create_parse_table extends Migration
      */
     public function down()
     {
-        $this->dropForeignKey('fk-parse-user_id', 'parse');
+        $this->dropForeignKey('fk-import-user_id', 'import');
 
-        $this->dropTable('parse');
+        $this->dropTable('import');
     }
 }

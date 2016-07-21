@@ -28,6 +28,12 @@ return [
         'articles' => [
             'class' => 'app\modules\articles\Module',
         ],
+        'catalog' => [
+            'class' => 'app\modules\catalog\Module',
+        ],
+        'import' => [
+            'class' => 'app\modules\import\Module',
+        ],
     ],
     'components' => [
         'db' => [

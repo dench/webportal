@@ -3,18 +3,18 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation for table `parse_product`.
+ * Handles the creation for table `import_product`.
  */
-class m160714_093044_create_parse_product_table extends Migration
+class m160714_093044_create_import_product_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('parse_product', [
+        $this->createTable('import_product', [
             'id' => $this->primaryKey(),
-            'parse_id' => $this->integer()->notNull(),
+            'import_id' => $this->integer()->notNull(),
             'remote_id' => $this->integer()->notNull(),
             'category_id' => $this->integer()->notNull(),
             'code' => $this->string()->notNull()->defaultValue(''),
@@ -30,9 +30,9 @@ class m160714_093044_create_parse_product_table extends Migration
             'status' => $this->smallInteger()->notNull()->defaultValue(0)
         ]);
 
-        $this->addForeignKey('fk-parse_product-parse_id', 'parse_product', 'parse_id', 'parse', 'id', 'CASCADE');
+        $this->addForeignKey('fk-import_product-import_id', 'import_product', 'import_id', 'import', 'id', 'CASCADE');
 
-        $this->addForeignKey('fk-parse_product-category_id', 'parse_product', 'category_id', 'parse_category', 'category_id', 'CASCADE');
+        $this->addForeignKey('fk-import_product-category_id', 'import_product', 'category_id', 'import_category', 'category_id', 'CASCADE');
     }
 
     /**
@@ -40,8 +40,8 @@ class m160714_093044_create_parse_product_table extends Migration
      */
     public function down()
     {
-        $this->dropForeignKey('fk-parse_product-parse_id', 'parse_product');
+        $this->dropForeignKey('fk-import_product-import_id', 'import_product');
 
-        $this->dropTable('parse_product');
+        $this->dropTable('import_product');
     }
 }
