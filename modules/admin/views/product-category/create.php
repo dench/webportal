@@ -7,7 +7,7 @@ use app\modules\admin\widgets\Box;
 /* @var $model app\modules\catalog\models\ProductCategory */
 
 $this->title = Yii::t('app', 'Создание категории');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Категории каталога'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Категории товаров'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

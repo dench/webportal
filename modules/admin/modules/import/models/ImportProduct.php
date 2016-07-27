@@ -1,7 +1,8 @@
 <?php
 
-namespace app\modules\import\models;
+namespace app\modules\admin\modules\import\models;
 
+use app\modules\catalog\models\Product;
 use Yii;
 
 /**

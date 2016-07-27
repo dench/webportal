@@ -21,6 +21,11 @@ return [
         ],
         'admin' => [
             'class' => 'app\modules\admin\Module',
+            'modules' => [
+                'import' => [
+                    'class' => 'app\modules\admin\modules\import\Module',
+                ],
+            ],
         ],
         'page' => [
             'class' => 'app\modules\page\Module',
@@ -30,9 +35,6 @@ return [
         ],
         'catalog' => [
             'class' => 'app\modules\catalog\Module',
-        ],
-        'import' => [
-            'class' => 'app\modules\import\Module',
         ],
     ],
     'components' => [
@@ -64,9 +66,11 @@ return [
                     'route' => 'articles/default/view',
                     'suffix' => '.html',
                 ],
-                '<module:articles>/<slug:[\w_-]+>' => '<module>/default/index',
+                '<module:admin>/<submodule:(import)>' => '<module>/<submodule>/default/index',
+                '<module:admin>/<submodule:(import)>/<controller>' => '<module>/<submodule>/<controller>/index',
                 '<module:(admin|articles)>' => '<module>/default/index',
                 '<module:admin>/<controller>' => '<module>/<controller>/index',
+                '<module:articles>/<slug:[\w_-]+>' => '<module>/default/index',
             ],
         ],
     ],

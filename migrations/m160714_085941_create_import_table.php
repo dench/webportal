@@ -16,9 +16,10 @@ class m160714_085941_create_import_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'format_id' => $this->smallInteger()->notNull(),
-            'time' => $this->integer()->notNull(),
-            'created' => $this->integer()->notNull(),
-            'rate' =>$this->decimal(4,2)->defaultValue(1),
+            'date' => $this->integer()->notNull()->defaultValue(0),
+            'created_at' => $this->integer()->notNull(),
+            'rate' => $this->decimal(4,2)->defaultValue(1),
+            'filename' => $this->string()->notNull(),
             'status' => $this->boolean()->notNull()->defaultValue(0)
         ]);
 

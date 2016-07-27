@@ -2,7 +2,8 @@
 
 namespace app\modules\catalog\models;
 
-use app\modules\import\models\ImportProduct;
+use app\behaviors\CreatorBehavior;
+use app\modules\admin\modules\import\models\ImportProduct;
 use app\modules\user\models\User;
 use Yii;
 
@@ -31,6 +32,9 @@ use Yii;
  */
 class Product extends \yii\db\ActiveRecord
 {
+    const STOCK_NOT = 0;
+    const STOCK_IN = 1;
+
     /**
      * @inheritdoc
      */
@@ -42,17 +46,31 @@ class Product extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        return [
+            CreatorBehavior::className(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
-            [['import_id', 'user_id', 'category_id', 'vendor_id', 'price', 'oldprice', 'stock', 'guarantee', 'enabled'], 'integer'],
-            [['user_id', 'category_id', 'vendor_id', 'name', 'price'], 'required'],
-            [['description'], 'string'],
+            [['category_id', 'vendor_id', 'price', 'oldprice', 'stock'], 'integer'],
+            [['category_id', 'vendor_id', 'name', 'price'], 'required'],
+            [['description', 'guarantee'], 'string'],
             [['code', 'name'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
-            [['import_id'], 'exist', 'skipOnError' => true, 'targetClass' => ImportProduct::className(), 'targetAttribute' => ['import_id' => 'id']],
+            /*[['import_id'], 'exist', 'skipOnError' => true, 'targetClass' => ImportProduct::className(), 'targetAttribute' => ['import_id' => 'id']],*/
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['vendor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vendor::className(), 'targetAttribute' => ['vendor_id' => 'id']],
+            ['stock', 'default', 'value' => self::STOCK_IN],
+            ['stock', 'in', 'range' => [self::STOCK_IN, self::STOCK_NOT]],
+            [['enabled'], 'default', 'value' => 1],
+            [['enabled'], 'boolean'],
         ];
     }
 

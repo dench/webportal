@@ -11,7 +11,9 @@
                     ['label' => Yii::t('app', 'Статьи'), 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/article']],
                     ['label' => Yii::t('app', 'Категории статей'), 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/article-category']],
                     ['label' => Yii::t('app', 'Продукты'), 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/product']],
-                    ['label' => Yii::t('app', 'Категории каталога'), 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/product-category']],
+                    ['label' => Yii::t('app', 'Категории товаров'), 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/product-category']],
+                    ['label' => Yii::t('app', 'Производители'), 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/vendor']],
+                    ['label' => Yii::t('app', 'XML импорт'), 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/import']],
                 ],
             ]
         ) ?>

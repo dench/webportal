@@ -1,9 +1,11 @@
 <?php
 
-namespace app\modules\import\models;
+namespace app\modules\admin\modules\import\models;
 
+use app\behaviors\CreatorBehavior;
 use app\modules\user\models\User;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "import".
@@ -11,9 +13,10 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property integer $format_id
- * @property integer $time
- * @property integer $created
+ * @property integer $date
+ * @property integer $created_at
  * @property string $rate
+ * @property string $filename
  * @property integer $status
  *
  * @property User $user
@@ -33,11 +36,25 @@ class Import extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'updatedAtAttribute' => false
+            ],
+            CreatorBehavior::className(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
-            [['user_id', 'format_id', 'time', 'created'], 'required'],
-            [['user_id', 'format_id', 'time', 'created', 'status'], 'integer'],
+            [['format_id', 'filename'], 'required'],
+            [['user_id', 'format_id', 'date', 'created_at', 'status'], 'integer'],
             [['rate'], 'number'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -49,14 +66,23 @@ class Import extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'format_id' => Yii::t('app', 'Format ID'),
-            'time' => Yii::t('app', 'Time'),
-            'created' => Yii::t('app', 'Created'),
+            'id' => 'ID',
+            'user_id' => Yii::t('app', 'Пользователь'),
+            'format_id' => Yii::t('app', 'Формат'),
+            'date' => Yii::t('app', 'Дата создания'),
+            'created_at' => Yii::t('app', 'Время загрузки'),
             'rate' => Yii::t('app', 'Rate'),
-            'status' => Yii::t('app', 'Status'),
+            'filename' => Yii::t('app', 'Имя файла'),
+            'status' => Yii::t('app', 'Статус'),
         ];
+    }
+
+    /**
+     * @return ImportFormat
+     */
+    public function getFormat()
+    {
+        return ImportFormat::findOne($this->format_id);
     }
 
     /**
@@ -81,5 +107,12 @@ class Import extends \yii\db\ActiveRecord
     public function getImportProducts()
     {
         return $this->hasMany(ImportProduct::className(), ['import_id' => 'id']);
+    }
+
+    public function afterDelete()
+    {
+        Upload::delete($this->filename);
+
+        parent::afterDelete();
     }
 }

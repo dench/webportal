@@ -3,10 +3,10 @@
 use app\modules\admin\widgets\Box;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\catalog\models\Product */
+/* @var $model app\modules\catalog\models\Vendor */
 
-$this->title = Yii::t('app', 'Создание продукта');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Продукты'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Создание производитея');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Производители'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
