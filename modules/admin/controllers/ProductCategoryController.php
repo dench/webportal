@@ -65,6 +65,8 @@ class ProductCategoryController extends Controller
     {
         $model = new ProductCategory();
 
+        $model->loadDefaultValues();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

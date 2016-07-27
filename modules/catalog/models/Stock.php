@@ -2,24 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: dench
- * Date: 22.07.16
- * Time: 12:15
+ * Date: 27.07.16
+ * Time: 18:09
  */
 
-namespace app\modules\admin\modules\import\models;
+namespace app\modules\catalog\models;
 
 use yii\base\Object;
 use yii\helpers\ArrayHelper;
 
-class ImportFormat extends Object
+class Stock extends Object
 {
     public $id;
     public $name;
 
     private static $data = [
-        1 => ['id' => 1, 'name' => 'Hotline'],
-        2 => ['id' => 2, 'name' => 'Price.ua'],
-        3 => ['id' => 3, 'name' => 'ibud.ua'],
+        1 => ['id' => 1, 'name' => 'В наличии'],
+        2 => ['id' => 2, 'name' => 'Нет в наличии'],
+        3 => ['id' => 3, 'name' => 'Под заказ'],
     ];
 
     public static function findOne($id)

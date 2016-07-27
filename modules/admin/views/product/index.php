@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\admin\widgets\Box;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -7,17 +8,14 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admin\models\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Products');
+$this->title = Yii::t('app', 'Продукты');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<?php Box::begin([
+    'footer' => Html::a(Yii::t('app', 'Добавить товар'), ['create'], ['class' => 'btn btn-success'])
+]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Product'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -34,4 +32,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
+
+<?php Box::end(); ?>

@@ -1,6 +1,8 @@
 <?php
 
 use app\modules\catalog\helpers\ProductCategoryHelper;
+use app\modules\catalog\helpers\VendorHelper;
+use app\modules\catalog\models\Stock;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -15,7 +17,7 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'vendor_id')->textInput() ?>
+<?= $form->field($model, 'vendor_id')->dropDownList(VendorHelper::list()) ?>
 
 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -25,11 +27,11 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'oldprice')->textInput() ?>
 
-<?= $form->field($model, 'stock')->textInput() ?>
+<?= $form->field($model, 'stock_id')->dropDownList(Stock::list()) ?>
 
 <?= $form->field($model, 'guarantee')->textInput() ?>
 
-<?= $form->field($model, 'enabled')->textInput() ?>
+<?= $form->field($model, 'enabled')->checkbox() ?>
 
 <div class="form-group">
     <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Создать') : Yii::t('app', 'Сохранить'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

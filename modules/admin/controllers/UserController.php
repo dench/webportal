@@ -65,6 +65,8 @@ class UserController extends Controller
     {
         $model = new User();
 
+        $model->loadDefaultValues();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

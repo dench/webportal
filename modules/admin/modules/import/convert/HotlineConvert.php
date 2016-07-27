@@ -31,7 +31,6 @@ class HotlineConvert
         }
 
         foreach ($raw->items->item as $item) {
-
             $result['items'][] = [
                 'remote_id' => (int)$item->id,
                 'category_id' => (int)$item->categoryId,

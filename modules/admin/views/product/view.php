@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'import_id',
             'user_id',
             'category_id',
             'code',
@@ -38,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:ntext',
             'price',
             'oldprice',
-            'stock',
+            'stock_id',
             'guarantee',
             'enabled',
         ],

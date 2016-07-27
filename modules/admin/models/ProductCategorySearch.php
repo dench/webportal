@@ -18,8 +18,9 @@ class ProductCategorySearch extends ProductCategory
     public function rules()
     {
         return [
-            [['id', 'parent_id', 'position', 'enabled'], 'integer'],
+            [['id', 'parent_id', 'position'], 'integer'],
             [['slug', 'name', 'title', 'description', 'keywords', 'text'], 'safe'],
+            [['enabled'], 'boolean']
         ];
     }
 

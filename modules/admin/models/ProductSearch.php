@@ -18,8 +18,9 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'import_id', 'user_id', 'category_id', 'vendor_id', 'price', 'oldprice', 'stock', 'guarantee', 'enabled'], 'integer'],
+            [['id', 'user_id', 'category_id', 'vendor_id', 'price', 'oldprice', 'stock_id', 'guarantee'], 'integer'],
             [['code', 'name', 'description'], 'safe'],
+            [['enabled'], 'boolean']
         ];
     }
 
@@ -60,13 +61,12 @@ class ProductSearch extends Product
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'import_id' => $this->import_id,
             'user_id' => $this->user_id,
             'category_id' => $this->category_id,
             'vendor_id' => $this->vendor_id,
             'price' => $this->price,
             'oldprice' => $this->oldprice,
-            'stock' => $this->stock,
+            'stock_id' => $this->stock_id,
             'guarantee' => $this->guarantee,
             'enabled' => $this->enabled,
         ]);

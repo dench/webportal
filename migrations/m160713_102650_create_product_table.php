@@ -21,8 +21,8 @@ class m160713_102650_create_product_table extends Migration
             'name' => $this->string()->notNull(),
             'description' => $this->text(),
             'price' => $this->integer()->notNull(),
-            'oldprice' => $this->integer()->notNull()->defaultValue(0),
-            'stock' => $this->integer()->notNull()->defaultValue(0),
+            'oldprice' => $this->integer(),
+            'stock_id' => $this->integer()->notNull()->defaultValue(0),
             'guarantee' => $this->string(),
             'enabled' => $this->boolean()->notNull()->defaultValue(1)
         ]);

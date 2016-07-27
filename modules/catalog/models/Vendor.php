@@ -2,6 +2,7 @@
 
 namespace app\modules\catalog\models;
 
+use app\modules\admin\modules\import\models\ImportVendor;
 use Yii;
 
 /**
@@ -59,7 +60,7 @@ class Vendor extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getImportVendors()
+    public function getImport()
     {
         return $this->hasMany(ImportVendor::className(), ['vendor_id' => 'id']);
     }
