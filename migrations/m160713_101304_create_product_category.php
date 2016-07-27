@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation for table `product_category`.
  */
-class m160713_103304_create_product_category extends Migration
+class m160713_101304_create_product_category extends Migration
 {
     /**
      * @inheritdoc

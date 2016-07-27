@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m160714_140730_insert_to_product_category extends Migration
+class m160713_101305_insert_to_product_category extends Migration
 {
     public function up()
     {

@@ -17,11 +17,10 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_at
  * @property string $rate
  * @property string $filename
- * @property integer $status
+ * @property boolean $enabled
  *
  * @property User $user
- * @property ImportCategory[] $importCategories
- * @property ImportProduct[] $importProducts
+ * @property ImportFormat $format
  */
 class Import extends \yii\db\ActiveRecord
 {
@@ -54,9 +53,10 @@ class Import extends \yii\db\ActiveRecord
     {
         return [
             [['format_id', 'filename'], 'required'],
-            [['user_id', 'format_id', 'date', 'created_at', 'status'], 'integer'],
+            [['format_id', 'date'], 'integer'],
             [['rate'], 'number'],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['filename'], 'string', 'max' => 255],
+            [['enabled'], 'boolean'],
         ];
     }
 
@@ -73,7 +73,7 @@ class Import extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Время загрузки'),
             'rate' => Yii::t('app', 'Rate'),
             'filename' => Yii::t('app', 'Имя файла'),
-            'status' => Yii::t('app', 'Статус'),
+            'enabled' => Yii::t('app', 'Активно'),
         ];
     }
 
@@ -94,21 +94,8 @@ class Import extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @inheritdoc
      */
-    public function getImportCategories()
-    {
-        return $this->hasMany(ImportCategory::className(), ['import_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getImportProducts()
-    {
-        return $this->hasMany(ImportProduct::className(), ['import_id' => 'id']);
-    }
-
     public function afterDelete()
     {
         Upload::delete($this->filename);

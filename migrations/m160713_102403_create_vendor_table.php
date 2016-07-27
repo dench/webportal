@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation for table `vendor`.
  */
-class m160714_102403_create_vendor_table extends Migration
+class m160713_102403_create_vendor_table extends Migration
 {
     /**
      * @inheritdoc

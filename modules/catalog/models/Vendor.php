@@ -9,9 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
- * @property integer $enabled
+ * @property boolean $enabled
  *
  * @property Product[] $products
+ * @property ImportVendor[] $import
  */
 class Vendor extends \yii\db\ActiveRecord
 {
@@ -30,7 +31,7 @@ class Vendor extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['enabled'], 'integer'],
+            [['enabled'], 'boolean'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -53,5 +54,13 @@ class Vendor extends \yii\db\ActiveRecord
     public function getProducts()
     {
         return $this->hasMany(Product::className(), ['vendor_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImportVendors()
+    {
+        return $this->hasMany(ImportVendor::className(), ['vendor_id' => 'id']);
     }
 }

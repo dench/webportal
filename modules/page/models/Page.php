@@ -66,7 +66,6 @@ class Page extends \yii\db\ActiveRecord
             [['slug'], 'unique'],
             [['name', 'title', 'slug', 'description', 'keywords', 'text'], 'trim'],
             [['enabled'], 'boolean'],
-            [['enabled'], 'default', 'value' => true],
         ];
     }
 

@@ -14,15 +14,21 @@ class m160714_091839_create_import_category_table extends Migration
     {
         $this->createTable('import_category', [
             'id' => $this->primaryKey(),
-            'import_id' => $this->integer()->notNull(),
-            'category_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer()->notNull(),
+            'remote_id' => $this->integer()->notNull(),
             'parent_id' => $this->integer(),
-            'name' => $this->string()->notNull()
+            'name' => $this->string()->notNull(),
+            'category_id' => $this->integer(),
+            'enabled' => $this->boolean()->notNull()->defaultValue(1)
         ]);
 
-        $this->addForeignKey('fk-import_category-import_id', 'import_category', 'import_id', 'import', 'id', 'CASCADE');
+        $this->createIndex('idx-import_category-remote_id', 'import_category', 'remote_id');
 
-        $this->createIndex('idx-import_category-category_id', 'import_category', 'category_id');
+        $this->addForeignKey('fk-import_category-user_id', 'import_category', 'user_id', 'user', 'id', 'CASCADE');
+
+        $this->addForeignKey('fk-import_category-parent_id', 'import_category', 'parent_id', 'import_category', 'remote_id', 'CASCADE');
+
+        $this->addForeignKey('fk-import_category-category_id', 'import_category', 'category_id', 'product_category', 'id', 'CASCADE');
     }
 
     /**
@@ -30,7 +36,11 @@ class m160714_091839_create_import_category_table extends Migration
      */
     public function down()
     {
-        $this->dropForeignKey('fk-import_category-import_id', 'import_category');
+        $this->dropForeignKey('fk-import_category-user_id', 'import_category');
+
+        $this->dropForeignKey('fk-import_category-parent_id', 'import_category');
+
+        $this->dropForeignKey('fk-import_category-category_id', 'import_category');
 
         $this->dropTable('import_category');
     }

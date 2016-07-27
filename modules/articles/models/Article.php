@@ -26,7 +26,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $updated_at
  * @property integer $position
  * @property integer $view
- * @property integer $enabled
+ * @property boolean $enabled
  *
  * @property ArticleCategory $category
  * @property User $user
@@ -74,7 +74,6 @@ class Article extends \yii\db\ActiveRecord
             [['name', 'title', 'slug', 'description', 'keywords', 'text'], 'trim'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ArticleCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['enabled'], 'boolean'],
-            [['enabled'], 'default', 'value' => true],
         ];
     }
 

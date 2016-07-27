@@ -3,6 +3,8 @@
 namespace app\modules\admin\modules\import\controllers;
 
 use app\modules\admin\modules\import\convert\HotlineConvert;
+use app\modules\admin\modules\import\models\ImportCategory;
+use app\modules\admin\modules\import\models\ImportProduct;
 use app\modules\admin\modules\import\models\Upload;
 use app\modules\catalog\models\Product;
 use app\modules\catalog\models\Vendor;
@@ -63,12 +65,24 @@ class DefaultController extends Controller
 
         $xml = HotlineConvert::run($file);
 
-        foreach ($xml['items'] as $x) {
-            $product = Product::findOne(['import_id' => $x['import_id']]);
-            if (empty($product)) {
-                $product = new Product();
+        foreach ($xml['categories'] as $x) {
+            $import = ImportCategory::findOne(['remote_id' => $x['remote_id']]);
+            if (empty($import)) {
+                $import = new ImportCategory();
             }
-            $product->attributes = ArrayHelper::merge($product->attributes, $x);
+            $import->attributes = ArrayHelper::merge($import->attributes, $x);
+            if (!$import->save()) {
+                print_r($import->errors);
+            }
+        }
+
+        /*foreach ($xml['items'] as $x) {
+            $import = ImportProduct::findOne(['remote_id' => $x['remote_id']]);
+            if (empty($import)) {
+                $import = new ImportProduct();
+            }
+            $import->attributes = ArrayHelper::merge($import->attributes, $x);
+            $import->import_id = $id;
 
             $vendor = Vendor::findOne(['name' => $x['vendor']]);
             if (empty($vendor)) {
@@ -76,12 +90,12 @@ class DefaultController extends Controller
                 $vendor->name = $x['vendor'];
                 $vendor->save();
             }
-            $product->vendor_id = $vendor->id;
+            $import->vendor_id = $vendor->id;
 
-            if (!$product->save()) {
-                print_r($product->errors);
+            if (!$import->save()) {
+                print_r($import->errors);
             }
-        }
+        }*/
 
         return $this->render('view', [
             'model' => $model,

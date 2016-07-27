@@ -32,27 +32,19 @@ class HotlineConvert
 
         foreach ($raw->items->item as $item) {
 
-            $stock = (string)$item->stock;
-
-            if ($stock == 'В наличии') {
-                $stock = Product::STOCK_IN;
-            } else {
-                $stock = Product::STOCK_NOT;
-            }
-
             $result['items'][] = [
-                'import_id' => (int)$item->id,
+                'remote_id' => (int)$item->id,
                 'category_id' => (int)$item->categoryId,
                 'code' => (string)$item->code,
                 'vendor' => (string)$item->vendor,
-                'name' => (string)$item->vendor,
+                'name' => (string)$item->name,
                 'description' => (string)$item->description,
                 'url' => (string)$item->url,
                 'price' => (int)$item->priceRUAH,
                 'oldprice' => (int)$item->oldprice,
                 'image' => (string)$item->image,
                 'guarantee' => (string)$item->guarantee,
-                'stock' => $stock,
+                'stock' => (string)$item->stock,
             ];
         }
 

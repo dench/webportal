@@ -19,7 +19,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $keywords
  * @property string $text
  * @property integer $position
- * @property integer $enabled
+ * @property boolean $enabled
  *
  * @property Article[] $articles
  * @property ArticleCategory $parent
@@ -65,6 +65,7 @@ class ArticleCategory extends \yii\db\ActiveRecord
             [['slug'], 'unique'],
             [['name', 'title', 'slug', 'description', 'keywords', 'text'], 'trim'],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => ArticleCategory::className(), 'targetAttribute' => ['parent_id' => 'id']],
+            [['enabled'], 'boolean'],
         ];
     }
 

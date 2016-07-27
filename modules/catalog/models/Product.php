@@ -22,7 +22,7 @@ use Yii;
  * @property integer $oldprice
  * @property integer $stock
  * @property integer $guarantee
- * @property integer $enabled
+ * @property boolean $enabled
  *
  * @property ProductCategory $category
  * @property ImportProduct $import
@@ -59,17 +59,16 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'vendor_id', 'price', 'oldprice', 'stock'], 'integer'],
+            [['category_id', 'vendor_id', 'price', 'oldprice', 'stock', 'import_id'], 'integer'],
             [['category_id', 'vendor_id', 'name', 'price'], 'required'],
             [['description', 'guarantee'], 'string'],
             [['code', 'name'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
-            /*[['import_id'], 'exist', 'skipOnError' => true, 'targetClass' => ImportProduct::className(), 'targetAttribute' => ['import_id' => 'id']],*/
+            [['import_id'], 'exist', 'skipOnError' => true, 'targetClass' => ImportProduct::className(), 'targetAttribute' => ['import_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['vendor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vendor::className(), 'targetAttribute' => ['vendor_id' => 'id']],
             ['stock', 'default', 'value' => self::STOCK_IN],
             ['stock', 'in', 'range' => [self::STOCK_IN, self::STOCK_NOT]],
-            [['enabled'], 'default', 'value' => 1],
             [['enabled'], 'boolean'],
         ];
     }

@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation for table `product_param`.
  */
-class m160714_111240_create_product_param_table extends Migration
+class m160713_111240_create_product_param_table extends Migration
 {
     /**
      * @inheritdoc

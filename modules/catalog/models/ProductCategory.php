@@ -4,6 +4,7 @@ namespace app\modules\catalog\models;
 
 use app\behaviors\PositionBehavior;
 use app\behaviors\TitleBehavior;
+use app\modules\admin\modules\import\models\ImportCategory;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 
@@ -19,11 +20,12 @@ use yii\behaviors\SluggableBehavior;
  * @property string $keywords
  * @property string $text
  * @property integer $position
- * @property integer $enabled
+ * @property boolean $enabled
  *
  * @property Product[] $products
  * @property ProductCategory $parent
  * @property ProductCategory[] $children
+ * @property ImportCategory[] $import
  */
 class ProductCategory extends \yii\db\ActiveRecord
 {
@@ -58,14 +60,15 @@ class ProductCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parent_id', 'position', 'enabled'], 'integer'],
+            [['parent_id', 'position'], 'integer'],
             [['name'], 'required'],
             [['text'], 'string'],
             [['slug'], 'string', 'max' => 100],
-            [['name', 'title', 'description', 'keywords'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            [['name', 'title', 'description', 'keywords'], 'string', 'max' => 255],
             [['name', 'title', 'slug', 'description', 'keywords', 'text'], 'trim'],
-            [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductCategory::className(), 'targetAttribute' => ['parent_id' => 'id']],
+            [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => self::className(), 'targetAttribute' => ['parent_id' => 'id']],
+            [['enabled'], 'boolean'],
         ];
     }
 
@@ -110,4 +113,14 @@ class ProductCategory extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ProductCategory::className(), ['parent_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImport()
+    {
+        return $this->hasMany(ImportCategory::className(), ['category_id' => 'id']);
+
+    }
+
 }
