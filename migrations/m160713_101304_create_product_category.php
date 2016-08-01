@@ -22,7 +22,7 @@ class m160713_101304_create_product_category extends Migration
             'keywords' => $this->string(),
             'text' => $this->text(),
             'position' => $this->integer()->notNull()->defaultValue(0),
-            'enabled' => $this->boolean()->notNull()->defaultValue(1)
+            'enabled' => $this->boolean()->notNull()->defaultValue(true)
         ]);
 
         $this->addForeignKey('fk-product_category-pid', 'product_category', 'parent_id', 'product_category', 'id', 'CASCADE');

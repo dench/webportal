@@ -98,7 +98,7 @@ class Import extends \yii\db\ActiveRecord
      */
     public function afterDelete()
     {
-        Upload::delete($this->filename);
+        ImportUpload::delete($this->filename);
 
         parent::afterDelete();
     }

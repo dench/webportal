@@ -22,7 +22,7 @@ class m160706_104621_create_article_category extends Migration
             'keywords' => $this->string(),
             'text' => $this->text(),
             'position' => $this->integer()->notNull()->defaultValue(0),
-            'enabled' => $this->boolean()->notNull()->defaultValue(1)
+            'enabled' => $this->boolean()->notNull()->defaultValue(true)
         ]);
 
         $this->addForeignKey('fk-article_category-pid', 'article_category', 'parent_id', 'article_category', 'id', 'CASCADE');

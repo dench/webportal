@@ -4,6 +4,7 @@ namespace app\modules\admin\modules\import\models;
 
 use app\behaviors\CreatorBehavior;
 use app\modules\catalog\models\ProductCategory;
+use app\modules\catalog\models\Stock;
 use app\modules\user\models\User;
 use Yii;
 
@@ -54,6 +55,8 @@ class ImportCategory extends \yii\db\ActiveRecord
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => self::className(), 'targetAttribute' => ['parent_id' => 'remote_id']],
             [['enabled'], 'boolean'],
+            // TODO: can't be null. why not?
+            [['enabled'], 'default', 'value' => true],
         ];
     }
 

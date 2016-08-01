@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\modules\import\models\Import */
-/* @var $upload app\modules\admin\modules\import\models\Upload */
+/* @var $upload app\modules\admin\modules\import\models\ImportUpload */
 
 $this->title = Yii::t('app', 'Импортировать');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Импортирование XML'), 'url' => ['index']];

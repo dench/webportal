@@ -23,15 +23,15 @@ class m160714_093044_create_import_product_table extends Migration
             'name' => $this->string()->notNull(),
             'description' => $this->text(),
             'price' => $this->integer()->notNull(),
-            'oldprice' => $this->integer()->notNull()->defaultValue(0),
+            'oldprice' => $this->integer(),
             'url' => $this->string()->notNull()->defaultValue(''),
             'image' => $this->string()->notNull()->defaultValue(''),
-            'stock' => $this->integer()->notNull(),
+            'stock_id' => $this->integer()->notNull(),
             'guarantee' => $this->string()->notNull()->defaultValue(''),
-            'enabled' => $this->boolean()->notNull()->defaultValue(1)
+            'enabled' => $this->boolean()->notNull()->defaultValue(true)
         ]);
 
-        $this->createIndex('idx-import_product-remote_id', 'import_product', 'remote_id');
+        $this->createIndex('idx-import_product-unique', 'import_product', ['remote_id', 'user_id'], true);
 
         $this->addForeignKey('fk-import_product-user_id', 'import_product', 'user_id', 'user', 'id', 'CASCADE');
 

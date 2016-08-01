@@ -20,6 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'date:datetime',
         'created_at',
         'rate',
-        'status',
+        'enabled',
     ],
 ]) ?>

@@ -8,8 +8,7 @@
 
 namespace app\modules\admin\modules\import\convert;
 
-
-use app\modules\catalog\models\Product;
+use app\modules\catalog\models\Stock;
 
 class HotlineConvert
 {
@@ -25,12 +24,20 @@ class HotlineConvert
 
         foreach ($raw->categories->category as $item) {
             $result['categories'][] = [
-                'id' => (int)$item->id,
+                'remote_id' => (int)$item->id,
+                'parent_id' => $item->parentId ? (int)$item->parentId : null,
                 'name' => (string)$item->name,
             ];
         }
 
         foreach ($raw->items->item as $item) {
+
+            $stock = Stock::NOT_AVAILABLE;
+
+            if ((string)$item->stock == 'В наличии') {
+                $stock = Stock::IN_STOCK;
+            }
+
             $result['items'][] = [
                 'remote_id' => (int)$item->id,
                 'category_id' => (int)$item->categoryId,
@@ -43,7 +50,7 @@ class HotlineConvert
                 'oldprice' => (int)$item->oldprice,
                 'image' => (string)$item->image,
                 'guarantee' => (string)$item->guarantee,
-                'stock' => (string)$item->stock,
+                'stock_id' => $stock,
             ];
         }
 

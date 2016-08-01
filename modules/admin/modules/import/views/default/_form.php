@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\modules\import\models\Import */
-/* @var $upload app\modules\admin\modules\import\models\Upload */
+/* @var $upload app\modules\admin\modules\import\models\ImportUpload */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

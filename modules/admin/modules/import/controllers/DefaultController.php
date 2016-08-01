@@ -5,7 +5,8 @@ namespace app\modules\admin\modules\import\controllers;
 use app\modules\admin\modules\import\convert\HotlineConvert;
 use app\modules\admin\modules\import\models\ImportCategory;
 use app\modules\admin\modules\import\models\ImportProduct;
-use app\modules\admin\modules\import\models\Upload;
+use app\modules\admin\modules\import\models\ImportUpload;
+use app\modules\admin\modules\import\models\ImportVendor;
 use app\modules\catalog\models\Product;
 use app\modules\catalog\models\Vendor;
 use Yii;
@@ -61,41 +62,11 @@ class DefaultController extends Controller
     {
         $model = $this->findModel($id);
 
-        $file = Upload::read($model->filename);
+        $error = $this->parseXml($model);
 
-        $xml = HotlineConvert::run($file);
-
-        foreach ($xml['categories'] as $x) {
-            $import = ImportCategory::findOne(['remote_id' => $x['remote_id']]);
-            if (empty($import)) {
-                $import = new ImportCategory();
-            }
-            $import->attributes = ArrayHelper::merge($import->attributes, $x);
-            if (!$import->save()) {
-                print_r($import->errors);
-            }
+        if (!empty($error)) {
+            print_r($error);
         }
-
-        /*foreach ($xml['items'] as $x) {
-            $import = ImportProduct::findOne(['remote_id' => $x['remote_id']]);
-            if (empty($import)) {
-                $import = new ImportProduct();
-            }
-            $import->attributes = ArrayHelper::merge($import->attributes, $x);
-            $import->import_id = $id;
-
-            $vendor = Vendor::findOne(['name' => $x['vendor']]);
-            if (empty($vendor)) {
-                $vendor = new Vendor();
-                $vendor->name = $x['vendor'];
-                $vendor->save();
-            }
-            $import->vendor_id = $vendor->id;
-
-            if (!$import->save()) {
-                print_r($import->errors);
-            }
-        }*/
 
         return $this->render('view', [
             'model' => $model,
@@ -111,7 +82,7 @@ class DefaultController extends Controller
     {
         $model = new Import();
 
-        $upload = new Upload();
+        $upload = new ImportUpload();
 
         if (Yii::$app->request->isPost) {
             $upload->xmlFile = UploadedFile::getInstance($upload, 'xmlFile');
@@ -120,7 +91,7 @@ class DefaultController extends Controller
                 if ($model->load(Yii::$app->request->post()) && $model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
                 } else {
-                    Upload::delete($upload->filename);
+                    ImportUpload::delete($upload->filename);
                 }
             }
         }
@@ -177,5 +148,52 @@ class DefaultController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    protected function parseXml($param)
+    {
+        $file = ImportUpload::read($param['filename']);
+        $user_id = $param['user_id'];
+
+        $error = [];
+
+        $xml = HotlineConvert::run($file);
+
+        foreach ($xml['categories'] as $x) {
+            $import = ImportCategory::findOne(['remote_id' => $x['remote_id'], 'user_id' => $user_id]);
+            if (empty($import)) {
+                $import = new ImportCategory();
+            }
+            $import->attributes = ArrayHelper::merge($import->attributes, $x);
+            if (!$import->save()) {
+                $error['categories'] = $import->errors;
+                continue;
+            }
+        }
+
+        foreach ($xml['items'] as $x) {
+            $vendor = ImportVendor::findOne(['name' => $x['vendor'], 'user_id' => $user_id]);
+            if (empty($vendor)) {
+                $vendor = new ImportVendor();
+            }
+            $vendor->name = $x['vendor'];
+            if (!$vendor->save()) {
+                $error['vendor'] = $vendor->errors;
+                continue;
+            }
+
+            $import = ImportProduct::findOne(['remote_id' => $x['remote_id'], 'user_id' => $user_id]);
+            if (empty($import)) {
+                $import = new ImportProduct();
+            }
+            $import->attributes = ArrayHelper::merge($import->attributes, $x);
+            $import->vendor_id = $vendor->id;
+            if (!$import->save()) {
+                $error['product'] = $import->errors;
+                continue;
+            }
+        }
+
+        return $error;
     }
 }

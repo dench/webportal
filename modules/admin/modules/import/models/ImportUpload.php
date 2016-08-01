@@ -13,7 +13,7 @@ use yii\base\Model;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 
-class Upload extends Model
+class ImportUpload extends Model
 {
     /**
      * @var UploadedFile

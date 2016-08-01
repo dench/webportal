@@ -15,7 +15,7 @@ class m160713_102403_create_vendor_table extends Migration
         $this->createTable('vendor', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'enabled' => $this->boolean()->notNull()->defaultValue(1)
+            'enabled' => $this->boolean()->notNull()->defaultValue(true)
         ]);
     }
 

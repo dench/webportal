@@ -26,7 +26,7 @@ class m160706_110638_create_article extends Migration
             'updated_at' => $this->integer()->notNull(),
             'position' => $this->integer()->notNull()->defaultValue(0),
             'view' => $this->integer()->notNull()->defaultValue(0),
-            'enabled' => $this->boolean()->notNull()->defaultValue(1)
+            'enabled' => $this->boolean()->notNull()->defaultValue(true)
         ]);
 
         $this->addForeignKey('fk-article-user_id', 'article', 'user_id', 'user', 'id', 'CASCADE');

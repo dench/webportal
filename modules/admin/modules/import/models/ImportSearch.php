@@ -18,7 +18,7 @@ class ImportSearch extends Import
     public function rules()
     {
         return [
-            [['id', 'user_id', 'format_id', 'date', 'created_at', 'status'], 'integer'],
+            [['id', 'user_id', 'format_id', 'date', 'created_at', 'enabled'], 'integer'],
             [['rate'], 'number'],
         ];
     }
@@ -65,7 +65,7 @@ class ImportSearch extends Import
             'date' => $this->date,
             'created_at' => $this->created_at,
             'rate' => $this->rate,
-            'status' => $this->status,
+            'status' => $this->enabled,
         ]);
 
         return $dataProvider;

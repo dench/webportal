@@ -13,13 +13,17 @@ use yii\helpers\ArrayHelper;
 
 class Stock extends Object
 {
+    const NOT_AVAILABLE = 0;
+    const IN_STOCK = 1;
+    const BY_ORDER = 2;
+
     public $id;
     public $name;
 
     private static $data = [
-        1 => ['id' => 1, 'name' => 'В наличии'],
-        2 => ['id' => 2, 'name' => 'Нет в наличии'],
-        3 => ['id' => 3, 'name' => 'Под заказ'],
+        self::NOT_AVAILABLE => ['id' => self::NOT_AVAILABLE, 'name' => 'Нет в наличии'],
+        self::IN_STOCK => ['id' => self::IN_STOCK, 'name' => 'В наличии'],
+        self::BY_ORDER => ['id' => self::BY_ORDER, 'name' => 'Под заказ'],
     ];
 
     public static function findOne($id)

@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\modules\import\models;
 
+use app\behaviors\CreatorBehavior;
 use app\modules\catalog\models\Vendor;
 use Yii;
 
@@ -29,11 +30,21 @@ class ImportVendor extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        return [
+            CreatorBehavior::className(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
-            [['user_id', 'name'], 'required'],
-            [['user_id', 'vendor_id'], 'integer'],
+            [['name'], 'required'],
+            [['vendor_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['vendor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vendor::className(), 'targetAttribute' => ['vendor_id' => 'id']],
         ];

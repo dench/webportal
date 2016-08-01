@@ -19,6 +19,8 @@ class m160714_093006_create_import_vendor_table extends Migration
             'vendor_id' => $this->integer()
         ]);
 
+        $this->createIndex('idx-import_vendor-unique', 'import_vendor', ['user_id', 'name'], true);
+
         $this->addForeignKey('fk-import_vendor-vendor_id', 'import_vendor', 'vendor_id', 'vendor', 'id', 'CASCADE');
     }
 

@@ -19,10 +19,10 @@ class m160714_091839_create_import_category_table extends Migration
             'parent_id' => $this->integer(),
             'name' => $this->string()->notNull(),
             'category_id' => $this->integer(),
-            'enabled' => $this->boolean()->notNull()->defaultValue(1)
+            'enabled' => $this->boolean()->notNull()->defaultValue(true)
         ]);
 
-        $this->createIndex('idx-import_category-remote_id', 'import_category', 'remote_id');
+        $this->createIndex('idx-import_category-unique', 'import_category', ['remote_id', 'user_id']);
 
         $this->addForeignKey('fk-import_category-user_id', 'import_category', 'user_id', 'user', 'id', 'CASCADE');
 

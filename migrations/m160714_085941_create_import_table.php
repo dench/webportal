@@ -20,7 +20,7 @@ class m160714_085941_create_import_table extends Migration
             'created_at' => $this->integer()->notNull(),
             'rate' => $this->decimal(4,2)->defaultValue(1),
             'filename' => $this->string()->notNull(),
-            'enabled' => $this->boolean()->notNull()->defaultValue(1)
+            'enabled' => $this->boolean()->notNull()->defaultValue(true)
         ]);
 
         $this->addForeignKey('fk-import-user_id', 'import', 'user_id', 'user', 'id', 'CASCADE');

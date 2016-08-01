@@ -23,7 +23,7 @@ class m160704_151825_create_page extends Migration
             'text' => $this->text(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
-            'enabled' => $this->boolean()->notNull()->defaultValue(1)
+            'enabled' => $this->boolean()->notNull()->defaultValue(true)
         ]);
         
         $this->addForeignKey('fk-page-user_id', 'page', 'user_id', 'user', 'id', 'CASCADE');
