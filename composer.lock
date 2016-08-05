@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e3f9340427727e6139e8eef350762ff4",
-    "content-hash": "9d5e8cfd1e627b1ce323045cebb57239",
+    "hash": "fa73ec8a4caa2c7b52ac9ed9e4d47fd8",
+    "content-hash": "be746c3a0ac0825945a8c9932abd03ca",
     "packages": [
         {
             "name": "bower-asset/almasaeed2010/adminlte",
@@ -247,6 +247,54 @@
             }
         },
         {
+            "name": "bower-asset/twbs/bootstrap-sass",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap-sass.git",
+                "reference": "5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap-sass/zipball/5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47",
+                "reference": "5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.9.1,<4.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "assets/stylesheets/_bootstrap.scss",
+                    "assets/javascripts/bootstrap.js"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "lib",
+                    "tasks",
+                    "templates",
+                    "test",
+                    "*.gemspec",
+                    "Rakefile",
+                    "Gemfile"
+                ],
+                "branch-alias": {
+                    "dev-master": "3.3.7-dev"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "bootstrap-sass is a Sass-powered version of Bootstrap 3, ready to drop right into your Sass powered applications.",
+            "keywords": [
+                "bootstrap",
+                "sass",
+                "twbs"
+            ],
+            "time": "2016-07-25 19:58:53"
+        },
+        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.6",
             "source": {
@@ -443,12 +491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "a15dcafee91b7f0bb2587da920d9826a7b7ded8a"
+                "reference": "69a84c713df948ec7911e4629a15ce21a83d8dc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/a15dcafee91b7f0bb2587da920d9826a7b7ded8a",
-                "reference": "a15dcafee91b7f0bb2587da920d9826a7b7ded8a",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/69a84c713df948ec7911e4629a15ce21a83d8dc8",
+                "reference": "69a84c713df948ec7911e4629a15ce21a83d8dc8",
                 "shasum": ""
             },
             "require": {
@@ -529,7 +577,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-08-02 08:30:01"
+            "time": "2016-08-03 08:11:50"
         },
         {
             "name": "yiisoft/yii2-bootstrap",

@@ -6,10 +6,13 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\assets\FontAwesomeAsset;
 
 AppAsset::register($this);
+FontAwesomeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,25 +30,38 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'id' => 'top',
+        'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
+        'brandOptions' => [
+            'class' => 'visible-xs visible-sm'
+        ],
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse navbar-static-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => Yii::t('app', 'Статьи'), 'url' => ['/articles/default/index']],
-        ['label' => Yii::t('app', 'Контакты'), 'url' => ['/main/contact/index']],
+
+    $mainItems = [
+        ['label' => '<i class="fa fa-briefcase"></i> ' . Yii::t('app', 'Компании'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
+        ['label' => '<i class="fa fa-th-list"></i> ' . Yii::t('app', 'Товары<span class="menu-md"> и услуги</span>'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
+        ['label' => '<i class="fa fa-file-text"></i> ' . Yii::t('app', 'Статьи'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
+        ['label' => '<i class="fa fa-newspaper-o"></i> ' . Yii::t('app', 'Новости'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
+        ['label' => '<i class="fa fa-star"></i> ' . Yii::t('app', 'Рейтинг<span class="menu-lg"> сайтов</span>'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
+        ['label' => '<i class="fa fa-pencil-square-o"></i> ' . Yii::t('app', 'Блоги'), 'url' => '#', 'options' => ['class' => 'menu-xs hidden-sm']],
+        ['label' => '<i class="fa fa-comments"></i> ' . Yii::t('app', 'Форум'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
     ];
+
+    $menuItems[] = ['label' => false, 'url' => false, 'options' => ['class' => 'navbar-divider']];
+
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => Yii::t('app', 'Регистрация'), 'url' => ['/user/default/signup']];
-        $menuItems[] = ['label' => Yii::t('app', 'Войти'), 'url' => ['/user/default/login']];
+        $menuItems[] = ['label' => '<i class="fa fa-sign-in"></i> ' . Yii::t('app', 'Войти'), 'url' => ['/user/default/login']];
+        $menuItems[] = ['label' => '<i class="fa fa-user"></i> ' . Yii::t('app', 'Регистрация'), 'url' => ['/user/default/signup']];
     } else {
-        $menuItems[] = ['label' => 'Admin', 'url' => ['/admin/default/index']];
+        $menuItems[] = ['label' => '<i class="fa fa-cogs"></i> ' . Yii::t('app', 'Панель управления'), 'url' => ['/admin/default/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/user/default/logout'], 'post')
             . Html::submitButton(
-                Yii::t('app', 'Выйти'),
+                '<i class="fa fa-sign-out"></i> ' . Yii::t('app', 'Выйти'),
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()
@@ -53,12 +69,45 @@ AppAsset::register($this);
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
+        'encodeLabels' => false,
+        'items' => array_merge($mainItems, $menuItems),
     ]);
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div id="header" class="hidden-xs">
+        <div class="container">
+
+            <div id="vse">
+                <a href="#" target="_blank"><i class="fa fa-users"></i> Найти строителей</a>
+                <a href="#" target="_blank"><i class="fa fa-cubes"></i> Найти материалы</a>
+            </div>
+
+            <?= Html::a(Html::img('/img/local/stroimdom.png',
+                ['alt' => Yii::$app->name]), Url::to(['/main/default/index']), ['id' => 'logo']) ?>
+
+            <div id="tbnr">
+
+            </div>
+        </div>
+    </div>
+
+    <?php
+    NavBar::begin([
+        'id' => 'menu',
+        'options' => [
+            'class' => 'navbar-main navbar-static-top hidden-xs',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav'],
+        'encodeLabels' => false,
+        'items' =>$mainItems,
+    ]);
+    NavBar::end();
+    ?>
+
+    <div id="main">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

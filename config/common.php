@@ -66,11 +66,21 @@ return [
                     'route' => 'articles/default/view',
                     'suffix' => '.html',
                 ],
+                '' => 'main/default/index',
                 '<module:admin>/<submodule:(import)>' => '<module>/<submodule>/default/index',
                 '<module:admin>/<submodule:(import)>/<controller>' => '<module>/<submodule>/<controller>/index',
                 '<module:(admin|articles)>' => '<module>/default/index',
                 '<module:admin>/<controller>' => '<module>/<controller>/index',
                 '<module:articles>/<slug:[\w_-]+>' => '<module>/default/index',
+            ],
+        ],
+        'assetManager' => [
+            'bundles'  => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'basePath'   => '@web',
+                    'sourcePath' => null,
+                    'css'        => [ 'css/bootstrap.css' ]
+                ],
             ],
         ],
     ],
