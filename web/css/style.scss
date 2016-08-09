@@ -8,12 +8,80 @@ body {
 .wrap {
   min-height: 100%;
   height: auto;
-  margin: 0 auto -60px;
+  margin: 0 auto -238px;
+  padding: 0 0 238px;
 }
 
+// TODO: refactor
 .footer {
-  height: 60px;
-  padding-top: 20px;
+  background: url("../img/local/footer.jpg") top center no-repeat,
+  url("../img/footer_bg.png") bottom repeat-x;
+  min-height: 238px;
+  .row {
+    color: #455B00;
+    line-height: 1.7;
+    padding-top: 140px;
+    a {
+      color: #455B00;
+      font-weight: bold;
+    }
+  }
+  .copy {
+    font-size: 0.9em;
+    line-height: 1.3;
+    a {
+      margin-top: 5px;
+      display: inline-block;
+    }
+  }
+  i {
+    font-size: 44px;
+    float: left;
+    color :#7FA01A;
+    margin-right: 15px;
+  }
+  .links {
+    a {
+      font-weight: normal;
+      padding-right: 20px;
+    }
+  }
+  .counter img {
+    position: absolute;
+  }
+  @media (max-width: $screen-xs-max) {
+    .row {
+      padding-top: 120px;
+      div {
+        margin-bottom: 10px;
+      }
+    }
+    .copy {
+      background: #BBDE51;
+    }
+    .counter img {
+      position: relative;
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    i {
+      display: none;
+    }
+    .counter img {
+      right: 0;
+      top: -10px;
+    }
+  }
+  @media (min-width: $screen-md-min) {
+    i {
+      display: block;
+    }
+  }
+  @media (min-width: $screen-lg-min) {
+    i {
+      display: block;
+    }
+  }
 }
 
 .navbar {
@@ -112,7 +180,7 @@ body {
           display: none;
         }
       }
-      > a:hover {
+      > a:hover, > a:focus {
         background: none;
         box-shadow: inset 0 0 40px rgba(0,0,0,0.1);
       }
@@ -202,6 +270,13 @@ section {
     border-left: none;
     border-right: none;
   }
+  &.green-light {
+    border: 1px solid #CBD99F;
+    border-left: none;
+    border-right: none;
+    background: #E6F1C4;
+    padding: 15px 0 0 0;
+  }
   .home-title {
     overflow: hidden;
     margin-bottom: 7px;
@@ -231,16 +306,24 @@ section {
     margin-top: 0;
   }
 }
+.for-dashed-left {
+  @media (min-width: $screen-md-min) {
+    padding-right: 35px;
+  }
+}
 
 
 a.thumbnail {
   margin-bottom: 15px;
-  i, img {
+  img {
     display: block;
+    border-radius: $border-radius-small;
+  }
+  i {
+    @extend img;
     background: url("../img/local/photo-none.png") center no-repeat #EEE;
     min-width: 120px;
     min-height: 110px;
-    border-radius: $border-radius-small;
   }
 }
 
@@ -254,6 +337,19 @@ a.thumbnail {
   }
   .text {
     margin: 8px 0 12px 0;
+  }
+}
+
+.author-home {
+  .list-group-item {
+    font-size: 17px;
+    padding: 18px 0;
+    background: transparent;
+    i {
+      margin-right: 10px;
+      font-size: 24px;
+      color: #FF6430;
+    }
   }
 }
 
@@ -286,6 +382,30 @@ a.thumbnail {
   }
   & + .btn {
     margin-left: 5px;
+  }
+}
+
+.news {
+  .media {
+    border-bottom: 1px dashed #CCC;
+    margin: 0;
+    padding: 20px 0 10px 0;
+    &:last-child {
+      border-bottom: none;
+    }
+    .thumbnail {
+      padding: 4px;
+      margin-right: 20px;
+      max-width: 130px;
+    }
+    &-date {
+      font-size: 0.9em;
+      color: #FF6430;
+      margin-bottom: 6px;
+    }
+    &-heading {
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -336,5 +456,46 @@ a.thumbnail {
     .list-group-item-heading {
       margin-right: 60px;
     }
+  }
+}
+
+.card-article {
+  margin: 0 -30px;
+  &-col {
+    padding: 0 30px;
+    margin-bottom: 30px;
+    .thumbnail {
+      i, img {
+        min-height: 180px;
+      }
+    }
+  }
+}
+
+.card-forum {
+  &-item {
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+  }
+  &-date {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 10px;
+    i {
+      color: #FF6430;
+      font-size: 14px;
+      margin-right: 4px;
+    }
+  }
+  &-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid #fff;
+    border-left: 20px solid transparent;
+    margin-top: 10px;
+    right: 50px;
   }
 }

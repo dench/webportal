@@ -8,7 +8,7 @@ $this->title = 'My Yii Application';
 <section class="grey">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 for-dashed-left">
                 <div class="home-title">
                     <div class="home-title-text"><?= Yii::t('app', 'Новости дня') ?></div>
                 </div>
@@ -178,10 +178,159 @@ $this->title = 'My Yii Application';
 <section class="grey">
     <div class="container">
         <div class="home-title">
-            <a href="#" class="btn btn-primary pull-right" rel="nofollow">Строительные статьи</a>
-            <div class="home-title-text"><?= Yii::t('app', 'Все статьи') ?></div>
+            <a href="#" class="btn btn-primary pull-right" rel="nofollow">Все статьи</a>
+            <div class="home-title-text"><?= Yii::t('app', 'Строительные статьи') ?></div>
             <hr>
         </div>
+        <div class="row card-article">
+            <div class="card-article-col col-sm-6 col-md-3">
+                <a href="#" rel="nofollow" class="thumbnail"><i></i></a>
+                <h4 class="card-article-title"><a href="#">Как выбрать кафельную плитку для кухни на стены</a></h4>
+                <div class="card-article-text">
+                    Подобрав долговечный, эстетичный и качественный кафель для стен, можно добиться хорошего и
+                    качественный кафель для стен, можно добиться хорошего
+                </div>
+            </div>
+            <div class="card-article-col col-sm-6 col-md-3">
+                <a href="#" rel="nofollow" class="thumbnail"><i></i></a>
+                <h4 class="card-article-title"><a href="#">Как выбрать кафельную плитку для кухни на стены</a></h4>
+                <div class="card-article-text">
+                    Подобрав долговечный, эстетичный и качественный кафель для стен, можно добиться хорошего и
+                    качественный кафель для стен, можно добиться хорошего
+                </div>
+            </div>
+            <div class="card-article-col col-sm-6 col-md-3">
+                <a href="#" rel="nofollow" class="thumbnail"><i></i></a>
+                <h4 class="card-article-title"><a href="#">Как выбрать кафельную плитку для кухни на стены</a></h4>
+                <div class="card-article-text">
+                    Подобрав долговечный, эстетичный и качественный кафель для стен, можно добиться хорошего и
+                    качественный кафель для стен, можно добиться хорошего
+                </div>
+            </div>
+            <div class="card-article-col col-sm-6 col-md-3">
+                <a href="#" rel="nofollow" class="thumbnail"><i></i></a>
+                <h4 class="card-article-title"><a href="#">Как выбрать кафельную плитку для кухни на стены</a></h4>
+                <div class="card-article-text">
+                    Подобрав долговечный, эстетичный и качественный кафель для стен, можно добиться хорошего и
+                    качественный кафель для стен, можно добиться хорошего
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="green-light">
+    <div class="container">
+        <div class="home-title">
+            <a href="#" class="btn btn-success pull-right" rel="nofollow">Перейти на форум</a>
+            <div class="home-title-text"><?= Yii::t('app', 'Форум') ?></div>
+            <hr>
+        </div>
+        <div class="row card-forum">
+            <div class="col-sm-6 col-md-3">
+                <div class="card-forum-item">
+                    <a href="#" class="card-forum-title">Как выбрать кафельную плитку для кухни на стены</a>
+                    <div class="card-forum-date"><i class="fa fa-calendar"></i> 5 августа</div>
+                    <i class="card-forum-triangle"></i>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card-forum-item">
+                    <a href="#" class="card-forum-title">Как выбрать кафельную плитку для кухни на стены</a>
+                    <div class="card-forum-date"><i class="fa fa-calendar"></i> 5 августа</div>
+                    <i class="card-forum-triangle"></i>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card-forum-item">
+                    <a href="#" class="card-forum-title">Как выбрать кафельную плитку для кухни на стены</a>
+                    <div class="card-forum-date"><i class="fa fa-calendar"></i> 5 августа</div>
+                    <i class="card-forum-triangle"></i>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card-forum-item">
+                    <a href="#" class="card-forum-title">Как выбрать кафельную плитку для кухни на стены</a>
+                    <div class="card-forum-date"><i class="fa fa-calendar"></i> 5 августа</div>
+                    <i class="card-forum-triangle"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 for-dashed-left">
+                <div class="home-title">
+                    <a href="#" class="btn btn-primary pull-right" rel="nofollow">Все новости</a>
+                    <div class="home-title-text"><?= Yii::t('app', 'Новости') ?></div>
+                    <hr>
+                </div>
+                <div class="news">
+                    <div class="media">
+                        <a class="pull-left thumbnail" href="#">
+                            <img class="media-object" src="http://www.stroimdom.com.ua/images/articles/big/9063.jpeg" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <div class="media-date">7 августа</div>
+                            <h4 class="media-heading"><a href="#">Заголовок медиа</a></h4>
+                            REMS Кобра – чистая труба – просто и быстро. Быстрая прочистка спиралями с насадками для рабочей длины до 100 м. Эффективное...
+                        </div>
+                    </div>
+                    <div class="media">
+                        <a class="pull-left thumbnail" href="#">
+                            <img class="media-object" src="http://www.stroimdom.com.ua/images/articles/big/9063.jpeg" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <div class="media-date">7 августа</div>
+                            <h4 class="media-heading"><a href="#">Заголовок медиа</a></h4>
+                            REMS Кобра – чистая труба – просто и быстро. Быстрая прочистка спиралями с насадками для рабочей длины до 100 м. Эффективное...
+                        </div>
+                    </div>
+                    <div class="media">
+                        <a class="pull-left thumbnail" href="#">
+                            <img class="media-object" src="http://www.stroimdom.com.ua/images/articles/big/9063.jpeg" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <div class="media-date">7 августа</div>
+                            <h4 class="media-heading"><a href="#">Заголовок медиа</a></h4>
+                            REMS Кобра – чистая труба – просто и быстро. Быстрая прочистка спиралями с насадками для рабочей длины до 100 м. Эффективное...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 dashed-left">
+                <div class="home-title">
+                    <div class="home-title-text"><?= Yii::t('app', 'Дом автора') ?></div>
+                    <hr>
+                </div>
+                <div class="row author-home">
+                    <div class="col-sm-6">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Выбор участка</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Проект дома</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Стройматериалы</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Выбор строителей</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Фундамент</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Подвал и первый этаж</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Второй этаж</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Крыша, двери</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Окна и лестницы</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Внутренняя лестница</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Делаем пол</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Электрика, отопление</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Наружные работы</a></li>
+                            <li class="list-group-item"><i class="fa fa-calendar"></i> <a href="#">Внутрение работы</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

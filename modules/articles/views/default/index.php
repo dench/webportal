@@ -35,7 +35,11 @@ $this->title .= $category->name;
     // TODO: Сохранять в кеше
     echo TreeNav::widget([
         'tree' => $tree,
-        'url' => '/articles/default/index'
+        'url' => '/articles/default/index',
+        'icons' => [
+            2 => 'fa fa-home',
+            14 => 'fa fa-home'
+        ]
     ]);
 
     ?>

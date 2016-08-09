@@ -17,11 +17,14 @@ class TreeNav extends Widget
 
     public $url;
 
+    public $icons;
+
     public function run()
     {
         return Nav::widget([
             'options' => ['class' => 'nav nav-stacked'],
             'items' => $this->renderItems($this->tree),
+            'encodeLabels' => false
         ]);
     }
 
@@ -30,6 +33,9 @@ class TreeNav extends Widget
         $menuItems = [];
 
         foreach ($items as $item) {
+            if (isset($this->icons[$item['id']])) {
+                $item['name'] = '<i class="' . $this->icons[$item['id']] . '"></i> ' . $item['name'];
+            }
             $temp = [
                 'label' => $item['name'],
                 'url' => [$this->url, 'slug' => $item['slug']],

@@ -44,7 +44,7 @@ FontAwesomeAsset::register($this);
     $mainItems = [
         ['label' => '<i class="fa fa-briefcase"></i> ' . Yii::t('app', 'Компании'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
         ['label' => '<i class="fa fa-th-list"></i> ' . Yii::t('app', 'Товары<span class="menu-md"> и услуги</span>'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
-        ['label' => '<i class="fa fa-file-text"></i> ' . Yii::t('app', 'Статьи'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
+        ['label' => '<i class="fa fa-file-text"></i> ' . Yii::t('app', 'Статьи'), 'url' => Url::to(['/articles']), 'options' => ['class' => 'menu-xs']],
         ['label' => '<i class="fa fa-newspaper-o"></i> ' . Yii::t('app', 'Новости'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
         ['label' => '<i class="fa fa-star"></i> ' . Yii::t('app', 'Рейтинг<span class="menu-lg"> сайтов</span>'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
         ['label' => '<i class="fa fa-pencil-square-o"></i> ' . Yii::t('app', 'Блоги'), 'url' => '#', 'options' => ['class' => 'menu-xs hidden-sm']],
@@ -108,18 +108,50 @@ FontAwesomeAsset::register($this);
     ?>
 
     <div id="main">
-        <?= Breadcrumbs::widget([
+        <?php
+        if (Url::to() != '/') {
+            echo '<section class="white"><div class="container">';
+        }
+         echo Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
+        ]);
+        echo $content;
+        if (Url::to() != '/') {
+            echo '</div></section>';
+        }
+        ?>
+
     </div>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="fa fa-envelope"></i>
+                Контакты Строим Дом:<br>
+                <b>contact@stroimdom.com.ua</b>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <i class="fa fa-briefcase"></i>
+                Для компаний и рекламодателей:<br>
+                <a href="#">Реклама</a> | <a href="#">Платные пакеты</a>
+            </div>
+            <div class="col-sm-4 col-md-3 col-lg-3 copy">
+                © 2005—2016<br>
+                Все права защищены<br>
+                <a href="#">Правила использования информации</a>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-1 counter">
+                <img src="http://c.bigmir.net/?s135228&amp;t8&amp;c1&amp;d24&amp;r1920" border="0" width="88" height="31" alt="bigmir TOP100">
+            </div>
+            <div class="col-md-7 links">
+                <a href="#">О проекте</a>
+                <a href="#">Реклама на портале</a>
+                <a href="#">Платные пакеты</a>
+                <a href="#">Нормативы</a>
+            </div>
+        </div>
     </div>
 </footer>
 
