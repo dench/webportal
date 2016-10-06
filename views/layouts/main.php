@@ -43,7 +43,7 @@ FontAwesomeAsset::register($this);
 
     $mainItems = [
         ['label' => '<i class="fa fa-briefcase"></i> ' . Yii::t('app', 'Компании'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
-        ['label' => '<i class="fa fa-th-list"></i> ' . Yii::t('app', 'Товары<span class="menu-md"> и услуги</span>'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
+        ['label' => '<i class="fa fa-th-list"></i> ' . Yii::t('app', 'Товары<span class="menu-md"> и услуги</span>'), 'url' => Url::to(['/catalog']), 'options' => ['class' => 'menu-xs']],
         ['label' => '<i class="fa fa-file-text"></i> ' . Yii::t('app', 'Статьи'), 'url' => Url::to(['/articles']), 'options' => ['class' => 'menu-xs']],
         ['label' => '<i class="fa fa-newspaper-o"></i> ' . Yii::t('app', 'Новости'), 'url' => '#', 'options' => ['class' => 'menu-xs']],
         ['label' => '<i class="fa fa-star"></i> ' . Yii::t('app', 'Рейтинг<span class="menu-lg"> сайтов</span>'), 'url' => '#', 'options' => ['class' => 'menu-xs']],

@@ -16,6 +16,7 @@ class m160713_102650_create_product_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'category_id' => $this->integer()->notNull(),
+            'slug' => $this->string(100)->unique(),
             'code' => $this->string()->notNull()->defaultValue(''),
             'vendor_id' => $this->integer()->notNull(),
             'name' => $this->string()->notNull(),

@@ -30,6 +30,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property ArticleCategory $category
  * @property User $user
+ * @property string $date
  */
 class Article extends \yii\db\ActiveRecord
 {
@@ -97,6 +98,14 @@ class Article extends \yii\db\ActiveRecord
             'view' => Yii::t('app', 'Просмотров'),
             'enabled' => Yii::t('app', 'Включено'),
         ];
+    }
+
+    /**
+     * @return string date formatter
+     */
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->created_at);
     }
 
     /**

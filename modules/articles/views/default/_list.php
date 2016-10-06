@@ -10,7 +10,7 @@ use yii\helpers\StringHelper;
         <a href="#" class="thumbnail"><i></i></a>
     </div>
     <div class="post-item-content col-md-9">
-        <div class="post-item-date"><?= $model->created_at ?></div>
+        <div class="post-item-date"><?= $model->date ?></div>
         <h3><?= Html::a(Html::encode($model->name), ['/articles/default/view', 'slug' => $model->slug]) ?></h3>
         <p class="post-item-text">
             <?= StringHelper::truncate($model->text, 150, '...'); ?>

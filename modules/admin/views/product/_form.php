@@ -3,8 +3,10 @@
 use app\modules\catalog\helpers\ProductCategoryHelper;
 use app\modules\catalog\helpers\VendorHelper;
 use app\modules\catalog\models\Stock;
+use app\modules\catalog\models\Vendor;
+use dosamigos\ckeditor\CKEditor;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\catalog\models\Product */
@@ -17,11 +19,24 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'vendor_id')->dropDownList(VendorHelper::list()) ?>
+< ?= $form->field($model, 'vendor_id')->hiddenInput()->label(false); ?>
+
+<?= $form->field($model, 'vendor_id')->textInput(); ?>
+
+<?= $form->field($model, 'vendor')->widget(\yii\jui\AutoComplete::classname(), [
+    'options' =>  [
+        'class' => 'form-control'
+    ],
+    'clientOptions' => [
+        'source' => Vendor::find()->select(['id', 'name AS label'])->where(['enabled' => 1])->asArray()->all(),
+    ],
+]) ?>
 
 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+<?= $form->field($model, 'description')->widget(CKEditor::className(), [
+    'options' => ['rows' => 10],
+]) ?>
 
 <?= $form->field($model, 'price')->textInput() ?>
 
@@ -30,6 +45,8 @@ use yii\widgets\ActiveForm;
 <?= $form->field($model, 'stock_id')->dropDownList(Stock::list()) ?>
 
 <?= $form->field($model, 'guarantee')->textInput() ?>
+
+<?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
 <?= $form->field($model, 'enabled')->checkbox() ?>
 

@@ -73,4 +73,9 @@ class ProductCategoryHelper
         $ids[] = $parent_id;
         return $ids;
     }
+
+    public static function level($parent_id = null, $enabled = 1)
+    {
+        return ProductCategory::find()->select(['name'])->where(['parent_id' => $parent_id])->andFilterWhere(['enabled' => $enabled])->orderBy('position')->indexBy('id')->asArray()->column();
+    }
 }

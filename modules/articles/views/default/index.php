@@ -20,6 +20,17 @@ if ($category->parent_id) {
 }
 $this->params['breadcrumbs'][] = $category->name;
 $this->title .= $category->name;
+
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => $category->description
+]);
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => $category->keywords
+]);
+
 ?>
 <div class="col-md-9">
     <?php

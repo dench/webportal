@@ -30,7 +30,17 @@ class ProductParam extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'name', 'value'], 'required'],
+            /*[['value'], 'required', 'when' => function($model){
+                return $model->name != '';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#'+attribute.id.replace('value','name')).val() != '';
+            }"],
+            [['name'], 'required', 'when' => function($model){
+                return $model->value != '';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#'+attribute.id.replace('name','value')).val() != '';
+            }"],*/
+            [['name', 'value'], 'required'],
             [['product_id'], 'integer'],
             [['name', 'value'], 'string', 'max' => 255],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],

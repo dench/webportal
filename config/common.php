@@ -36,6 +36,9 @@ return [
         'catalog' => [
             'class' => 'app\modules\catalog\Module',
         ],
+        'company' => [
+            'class' => 'app\modules\company\Module',
+        ],
     ],
     'components' => [
         'db' => [
@@ -66,12 +69,17 @@ return [
                     'route' => 'articles/default/view',
                     'suffix' => '.html',
                 ],
+                [
+                    'pattern' => 'product/<slug:[\w_-]+>-<id:[0-9]+>',
+                    'route' => 'catalog/default/view',
+                    'suffix' => '.html',
+                ],
                 '' => 'main/default/index',
                 '<module:admin>/<submodule:(import)>' => '<module>/<submodule>/default/index',
                 '<module:admin>/<submodule:(import)>/<controller>' => '<module>/<submodule>/<controller>/index',
-                '<module:(admin|articles)>' => '<module>/default/index',
+                '<module:(articles|catalog)>/<slug:[\w_-]+>' => '<module>/default/index',
+                '<module:(admin|articles|catalog)>' => '<module>/default/index',
                 '<module:admin>/<controller>' => '<module>/<controller>/index',
-                '<module:articles>/<slug:[\w_-]+>' => '<module>/default/index',
             ],
         ],
         'assetManager' => [

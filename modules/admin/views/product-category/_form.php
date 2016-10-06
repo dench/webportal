@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\catalog\helpers\ProductCategoryHelper;
+use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -21,7 +22,9 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+<?= $form->field($model, 'text')->widget(CKEditor::className(), [
+    'options' => ['rows' => 10],
+]) ?>
 
 <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 

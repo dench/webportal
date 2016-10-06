@@ -6,6 +6,7 @@ use app\behaviors\CreatorBehavior;
 use app\modules\admin\modules\import\models\ImportProduct;
 use app\modules\user\models\User;
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "product".
@@ -13,6 +14,7 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property integer $category_id
+ * @property string $slug
  * @property string $code
  * @property integer $vendor_id
  * @property string $name
@@ -47,6 +49,11 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             CreatorBehavior::className(),
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                'ensureUnique' => true
+            ],
         ];
     }
 
@@ -57,9 +64,21 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['category_id', 'vendor_id', 'price', 'oldprice', 'stock_id'], 'integer'],
-            [['category_id', 'vendor_id', 'name', 'price', 'stock_id'], 'required'],
+            [['category_id', 'name', 'price', 'stock_id'], 'required'],
+            [['vendor'], 'required', 'when' => function($model){
+                return !empty($model->vendor_id);
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#'+attribute.id.replace('vendor','vendor_id')).val() == '';
+            }"],
+            [['vendor_id'], 'required', 'when' => function($model){
+                return !empty($model->vendor);
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#'+attribute.id.replace('vendor_id','vendor')).val() == '';
+            }"],
             [['description', 'guarantee'], 'string'],
             [['code', 'name'], 'string', 'max' => 255],
+            [['slug'], 'string', 'max' => 100],
+            [['slug'], 'unique'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['vendor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vendor::className(), 'targetAttribute' => ['vendor_id' => 'id']],
@@ -76,8 +95,10 @@ class Product extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'Пользователь'),
             'category_id' => Yii::t('app', 'Категория'),
+            'slug' => Yii::t('app', 'ЧПУ'),
             'code' => Yii::t('app', 'Код товара'),
             'vendor_id' => Yii::t('app', 'Производитель'),
+            'vendor' => Yii::t('app', 'Производитель'),
             'name' => Yii::t('app', 'Название'),
             'description' => Yii::t('app', 'Описание'),
             'price' => Yii::t('app', 'Цена'),

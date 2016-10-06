@@ -13,6 +13,7 @@ if ($category->parent_id) {
 }
 $this->params['breadcrumbs'][] = ['label' => $category->name, 'url' => ['/articles/default/index', 'slug' => $category->slug]];
 
+// TODO: MetaTag Behavior
 $this->title = $model->title;
 
 $this->registerMetaTag([
@@ -27,6 +28,6 @@ $this->registerMetaTag([
 
 echo \app\widgets\Page::widget([
     'name' => $model->name,
-    'date' => $model->created_at,
+    'date' => $model->date,
     'text' => $model->text
 ]);
